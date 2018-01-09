@@ -1,2 +1,17 @@
----
-- host: all
+﻿---
+- hosts: all
+  tasks:
+    - name: deploy yum repository
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: root
+        group: root
+        mode: 0644
+      with_items:
+      - {
+        src: "/etc/yum.repos.d/CentOS-Base.repo",
+        dest: "/etc/yum.repos.d/CentOS-Base.repo"
+        }
+    
+  

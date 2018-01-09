@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: root
+  
+  tasks:
+   - name: install ntp client
+     yum: name=ntp state=present
+   - name: service setting
+     service: name=ntpd enabled=yes
