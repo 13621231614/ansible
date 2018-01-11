@@ -1,1 +1,21 @@
 ---
+- name: play template module
+  hosts: ansible01
+  remote_user: root
+  sudo: yes
+  vars:
+    dynamic_word: "World"
+  
+  tasks:
+    - name: generate file (hello_world.txt)
+      template:
+        src: hello_world.txt.j2
+        dest: /tmp/hello_world.txt 
+    - name: show file context
+      command: cat hello_world.txt
+      args:
+        cddir: /tmp
+      register: result
+    - name: print stdout
+      debug:
+        msg: "{{ result }}"
